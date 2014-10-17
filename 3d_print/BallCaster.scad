@@ -14,7 +14,7 @@ cylheight = TotalHeight;
 cylrad = (BallSize/2) + WallThickness + Airgap;
 echo (cylheight);
 difference () {
-	cylinder(r1 = cylrad , r2 = cylrad,  cylheight - (BallSize*BallProtrude));
+	cylinder(r1 = cylrad , r2 = cylrad,  cylheight - (BallSize*BallProtrude), $fn=100);
 
 	translate([0,0,TotalHeight - BallSize/2]) {
 		cube(size = [cylrad*2+5, cylrad/2, BallSize*1.25], center = true );
@@ -27,7 +27,7 @@ difference () {
 
 difference (){
 	linear_extrude(height=Mount)
-	hull() {
+	hull($fn=100) {
 		translate([ScrewSpacing/2,0,0]) {
 			circle(  MountScrewRad*3);
 			}
@@ -38,9 +38,9 @@ difference (){
 		}
 
 	translate([ScrewSpacing/2,0,0]) {
-		cylinder(r1 = MountScrewRad, r2 = MountScrewRad, h= Mount+2);
+		cylinder(r1 = MountScrewRad, r2 = MountScrewRad, h= Mount+2, $fn=26);
 		}
   	translate([1-ScrewSpacing/2,0,0]) {
-		cylinder(r1 = MountScrewRad, r2 = MountScrewRad, h= Mount+2);
+		cylinder(r1 = MountScrewRad, r2 = MountScrewRad, h= Mount+2, $fn=26);
    		}
 }
